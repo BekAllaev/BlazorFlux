@@ -6,7 +6,6 @@
 
 @inject IDispatcher Dispatcher
 @inject IState<WeatherState> WeatherState
-@inject HttpClient Http
 
 <PageTitle>Weather forecast</PageTitle>
 
@@ -53,17 +52,14 @@ else
     {
         if (WeatherState.Value.Initialized == false)
         {
-            await LoadForecasts();
+            LoadForecasts();
             Dispatcher.Dispatch(new WeatherSetInitializedAction());
         }
         await base.OnInitializedAsync();
     }
 
-    private async Task LoadForecasts()
+    private void LoadForecasts()
     {
-        Dispatcher.Dispatch(new WeatherSetLoadingAction(true));
-        var forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
-        Dispatcher.Dispatch(new WeatherSetForecastsAction(forecasts));
-        Dispatcher.Dispatch(new WeatherSetLoadingAction(false));
+        Dispatcher.Dispatch(new WeatherLoadForecastsAction());
     }
 }
