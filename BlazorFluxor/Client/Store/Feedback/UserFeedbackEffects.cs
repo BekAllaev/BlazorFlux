@@ -22,6 +22,7 @@ namespace BlazorFluxor.Client.Store.Feedback
             }
             else
             {
+                var responseContent = await response.Content.ReadAsStringAsync();
                 dispatcher.Dispatch(new UserFeedbackSubmitFailureAction(response.ReasonPhrase));
             }
         }
