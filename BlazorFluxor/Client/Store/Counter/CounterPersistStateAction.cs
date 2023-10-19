@@ -1,6 +1,6 @@
 ﻿namespace BlazorFluxor.Client.Store.Counter
 {
-    public class CounterPersistStateAction
+    public record CounterPersistStateAction
     {
         public CounterState CounterState { get; }
         public CounterPersistStateAction(CounterState counterState)

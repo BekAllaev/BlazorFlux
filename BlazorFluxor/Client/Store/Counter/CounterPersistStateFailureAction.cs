@@ -1,6 +1,6 @@
 ﻿namespace BlazorFluxor.Client.Store.Counter
 {
-    public class CounterPersistStateFailureAction
+    public record CounterPersistStateFailureAction
     {
         public string ErrorMessage { get; }
         public CounterPersistStateFailureAction(string errorMessage)
