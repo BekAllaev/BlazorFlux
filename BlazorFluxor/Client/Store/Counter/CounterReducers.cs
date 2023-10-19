@@ -12,5 +12,11 @@ namespace BlazorFluxor.Client.Store.Counter
                 CurrentCount = state.CurrentCount + 1
             };
         }
+
+        [ReducerMethod]
+        public static CounterState OnCounterSetState(CounterState state, CounterSetStateAction action)
+        {
+            return action.counterState;
+        }
     }
 }
