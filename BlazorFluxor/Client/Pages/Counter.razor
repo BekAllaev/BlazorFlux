@@ -1,8 +1,10 @@
 ﻿@page "/counter"
 @using BlazorFluxor.Client.Store.Counter
+@using BlazorFluxor.Client.Store.CounterHub;
 @inherits FluxorComponent
 @inject IDispatcher dispatcher
 @inject IState<CounterState> counterState
+@inject IState<CounterHubState> counterHubState
 
 <PageTitle>Counter</PageTitle>
 
@@ -14,6 +16,7 @@
 <button class="btn btn-outline-primary" @onclick="SaveCount">Save</button>
 <button class="btn btn-outline-info" @onclick="LoadCount">Load</button>
 <button class="btn btn-outline-danger" @onclick="ClearCount">Clear</button>
+<button class="btn btn-outline-warning" @onclick="SendCount" disabled="@(!counterHubState.Value.Connected)">Broadcast</button>
 
 @code {
 
@@ -35,5 +38,10 @@
     private void ClearCount()
     {
         dispatcher.Dispatch(new CounterClearStateAction());
+    }
+
+    private void SendCount()
+    {
+        Dispatcher.Dispatch(new CounterHubSendCountAction(CounterState.Value.CurrentCount));
     }
 }
