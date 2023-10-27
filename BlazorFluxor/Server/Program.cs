@@ -1,3 +1,4 @@
+using BlazorWithFluxor.Server.Hubs;
 using Microsoft.AspNetCore.ResponseCompression;
 
 namespace BlazorFluxor
@@ -10,6 +11,7 @@ namespace BlazorFluxor
 
             // Add services to the container.
 
+            builder.Services.AddSignalR();
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
@@ -34,7 +36,7 @@ namespace BlazorFluxor
 
             app.UseRouting();
 
-
+            app.MapHub<CounterHub>("/counterHub");
             app.MapRazorPages();
             app.MapControllers();
             app.MapFallbackToFile("index.html");
