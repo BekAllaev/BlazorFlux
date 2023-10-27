@@ -1,5 +1,7 @@
 ﻿@using BlazorFluxor.Client.Store.Counter.Components
+@using BlazorFluxor.Client.Store.CounterHub;
 @inherits LayoutComponentBase
+@inject IDispatcher dispatcher
 
 <div class="page">
     <div class="sidebar">
@@ -20,3 +22,10 @@
 <BlazoredToasts Position="ToastPosition.TopRight" Timeout="3" />
 
 <StateLoader />
+
+@code{
+    protected override void OnInitialized()
+    {
+        dispatcher.Dispatch(new CounterHubStartAction());
+    }
+}

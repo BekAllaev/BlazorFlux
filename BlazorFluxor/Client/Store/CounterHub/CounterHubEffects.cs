@@ -11,7 +11,7 @@ namespace BlazorFluxor.Client.Store.CounterHub
         public CounterHubEffects(NavigationManager navigationManager)
         {
             _hubConnection = new HubConnectionBuilder()
-                .WithUrl(navigationManager.ToAbsoluteUri("/counterhub"))
+                .WithUrl(navigationManager.ToAbsoluteUri("/counterHub"))
                 .WithAutomaticReconnect()
                 .Build();
         }
