@@ -42,6 +42,6 @@
 
     private void SendCount()
     {
-        Dispatcher.Dispatch(new CounterHubSendCountAction(CounterState.Value.CurrentCount));
+        dispatcher.Dispatch(new CounterHubSendCountAction(counterState.Value.CurrentCount));
     }
 }
